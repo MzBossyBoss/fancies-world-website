@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080711">
+<title>Fancie's World | Fashion, Beauty & Music</title>
+<meta name="description" content="Discover Fancie's World. Fashion, beauty, music, and modern living.">
+
+<style>
+:root {
+  --black: #080711;
+  --panel: #11101d;
+  --white: #f7f4fb;
+  --muted: #bcb7ca;
+  --pink: #fa22b8;
+  --blue: #315cff;
+  --yellow: #f4d85b;
+  --line: rgba(255,255,255,.15);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+button, .btn { cursor: pointer; }
+button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+section[id] { scroll-margin-top: 10px; }
+.sr-only { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* HEADER */
+header {
+  min-height: 76px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  z-index: 5;
+  background: rgba(8,7,17,.92);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: Georgia, serif;
+  font-size: clamp(19px, 2.6vw, 31px);
+  letter-spacing: 5px;
+  white-space: nowrap;
+}
+.brand span { color: var(--pink); }
+nav { display: flex; gap: clamp(15px, 3vw, 42px); }
+nav a {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #e7e2ef;
+  transition: color .2s;
+}
+nav a:hover { color: var(--pink); }
+.socials { display: flex; gap: 16px; min-width: 20px; }
+.socials a { width: 20px; height: 20px; color: #e7e2ef; transition: color .2s, transform .2s; }
+.socials a:hover { color: var(--pink); transform: translateY(-2px); }
+.socials svg { width: 20px; height: 20px; display: block; }
+
+/* HERO */
+.hero {
+  min-height: 650px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 80px 5%;
+  background:
+    radial-gradient(ellipse at 76% 28%, rgba(49,92,255,.56), transparent 35%),
+    radial-gradient(ellipse at 68% 70%, rgba(250,34,184,.3), transparent 37%),
+    linear-gradient(105deg, #100715, #11102c 55%, #080711);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8,7,17,.15), rgba(8,7,17,.03) 65%, rgba(8,7,17,.35)),
+    linear-gradient(0deg, var(--black), transparent 35%);
+}
+/* The photo is applied by the script (SITE.heroImage). */
+.hero-art {
+  position: absolute;
+  z-index: -2;
+  inset: 0 0 0 34%;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  opacity: .92;
+}
+.hero-content { width: min(720px, 70%); animation: reveal 1s ease both; }
+.kicker { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--pink); text-transform: uppercase; }
+.hero h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(47px, 7.4vw, 100px);
+  font-weight: 400;
+  letter-spacing: -3px;
+  line-height: .99;
+  margin: 25px 0;
+  text-transform: uppercase;
+  text-shadow: 0 4px 30px rgba(0,0,0,.5);
+}
+.hero h1 span { color: #e9e4f6; }
+.hero p { max-width: 480px; font-size: 15px; color: #e0dbe9; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
+.actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.btn {
+  padding: 13px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.75);
+  color: white;
+  background: transparent;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  transition: background .2s, color .2s, transform .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: white; color: #111; border-color: white; }
+.btn-primary:hover { background: var(--yellow); border-color: var(--yellow); }
+.btn-pink { border-color: var(--pink); }
+.btn-pink:hover { background: var(--pink); }
+.btn-soon { border-color: rgba(255,255,255,.35); color: var(--muted); cursor: default; }
+.btn-soon:hover { transform: none; }
+@keyframes reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+/* SECTIONS */
+.container { width: min(1250px, 90%); margin: auto; }
+.section { padding: 85px 0; border-bottom: 1px solid var(--line); }
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  margin-bottom: 32px;
+}
+.section-head h2 { margin: 10px 0 0; font: 400 clamp(34px, 5vw, 56px)/1.1 Georgia, serif; }
+.section-head p { color: var(--muted); max-width: 440px; font-size: 13px; }
+.overline { color: var(--pink); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+
+/* COMING SOON PANEL */
+.soon-panel {
+  padding: 56px 24px;
+  text-align: center;
+  border: 1px dashed rgba(255,255,255,.3);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(49,92,255,.22), transparent 55%),
+    radial-gradient(circle at 85% 80%, rgba(250,34,184,.18), transparent 55%),
+    #0b0a14;
+}
+.soon-panel strong { display: block; font: 400 clamp(28px, 4vw, 40px)/1.1 Georgia, serif; margin: 8px 0; }
+.soon-panel p { margin: 0; color: var(--muted); font-size: 13px; }
+
+/* RADIO */
+.radio-wrap {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  border: 1px solid var(--line);
+  background: #0c0b15;
+}
+.now {
+  padding: 28px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: radial-gradient(ellipse at 30% 0%, rgba(250,34,184,.2), transparent 60%), #0c0b15;
+}
+.eq { display: flex; gap: 4px; height: 46px; align-items: flex-end; }
+.eq i { width: 6px; height: 8px; background: var(--pink); }
+.eq.playing i { animation: eqbar .8s ease-in-out infinite alternate; }
+.eq i:nth-child(2) { animation-delay: .1s; } .eq i:nth-child(3) { animation-delay: .25s; }
+.eq i:nth-child(4) { animation-delay: .05s; } .eq i:nth-child(5) { animation-delay: .35s; }
+.eq i:nth-child(6) { animation-delay: .18s; } .eq i:nth-child(7) { animation-delay: .3s; }
+@keyframes eqbar { to { height: 46px; } }
+.now-label { font-size: 10px; letter-spacing: 3px; color: var(--pink); text-transform: uppercase; font-weight: 700; }
+.now-title { font: 400 25px/1.2 Georgia, serif; margin: 0; word-break: break-word; }
+.now-meta { color: var(--muted); font-size: 12px; margin: 0; }
+.controls { display: flex; gap: 9px; flex-wrap: wrap; }
+.rbtn {
+  border: 1px solid var(--pink);
+  color: white;
+  background: transparent;
+  padding: 10px 15px;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: background .2s;
+}
+.rbtn:hover { background: var(--pink); }
+.rbtn.solid { background: var(--pink); }
+.vol { display: flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+.vol input { flex: 1; accent-color: var(--pink); }
+.radio-status { color: var(--muted); font-size: 12px; margin: 0; min-height: 20px; }
+.browser { padding: 24px; min-width: 0; }
+.search { display: flex; gap: 10px; margin-bottom: 14px; }
+.search input {
+  flex: 1; min-width: 0; padding: 12px; color: white; background: #151321; border: 1px solid #555064;
+}
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.chip {
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+  padding: 7px 13px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+}
+.chip:hover { color: white; border-color: rgba(255,255,255,.5); }
+.chip[aria-pressed="true"] { background: var(--pink); border-color: var(--pink); color: white; }
+.stations { max-height: 410px; overflow: auto; border-top: 1px solid var(--line); list-style: none; margin: 0; padding: 0; }
+.stations li button {
+  width: 100%; text-align: left; display: grid; grid-template-columns: 1fr auto; gap: 2px 12px;
+  padding: 12px 8px; background: none; border: 0; border-bottom: 1px solid var(--line); color: white;
+}
+.stations li button:hover { background: rgba(255,255,255,.05); }
+.stations li.active button { background: rgba(250,34,184,.15); }
+.st-name { font-size: 14px; }
+.st-meta { font-size: 11px; color: var(--muted); grid-column: 1; }
+.st-play { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: var(--pink); font-size: 12px; }
+.list-note { padding: 28px 8px; color: var(--muted); font-size: 13px; }
+
+/* CATEGORIES */
+.category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.category {
+  min-height: 360px; padding: 35px; display: flex; flex-direction: column; justify-content: end;
+  position: relative; overflow: hidden; background: linear-gradient(140deg, #16142c, #222d65);
+  border: 1px solid var(--line);
+}
+.category::before {
+  content: ""; position: absolute; width: 260px; height: 260px; border-radius: 50%; right: -50px; top: -50px;
+  background: radial-gradient(circle, rgba(250,34,184,.45), transparent 70%);
+}
+.category.beauty { background: linear-gradient(140deg, #25101f, #392044); }
+.category.beauty::before { background: radial-gradient(circle, rgba(244,216,91,.3), transparent 70%); }
+.category-content { position: relative; }
+.category h3 { font: 400 clamp(36px, 5vw, 58px)/1 Georgia, serif; margin: 12px 0; }
+.category p { color: #d0cbd9; max-width: 360px; font-size: 13px; }
+.category .btn { margin-top: 15px; }
+
+/* PRODUCTS */
+.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.product { min-width: 0; }
+.product-image {
+  aspect-ratio: 4 / 5; display: grid; place-items: center; position: relative; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, rgba(49,92,255,.38), transparent 55%), #151320;
+  border: 1px solid var(--line); color: rgba(255,255,255,.7); font: 13px Georgia, serif; letter-spacing: 2px;
+  transition: border-color .3s, box-shadow .3s;
+}
+a.product-image:hover { border-color: var(--pink); box-shadow: 0 18px 50px rgba(250,34,184,.22); }
+.product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-image.beauty-img { background: radial-gradient(ellipse at 55% 30%, rgba(250,34,184,.28), transparent 55%), #1b111d; }
+.product-image.book-img { background: radial-gradient(ellipse at 50% 30%, rgba(244,216,91,.22), transparent 55%), #17151b; }
+.product-image span { text-align: center; padding: 20px; }
+.product-info { padding: 14px 0; }
+.product-info h3 { margin: 0; font-size: 15px; font-weight: 500; }
+.product-info p { color: var(--muted); font-size: 12px; margin: 6px 0; }
+.product-info .buy {
+  display: inline-block; margin-top: 8px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  border-bottom: 1px solid var(--pink); padding-bottom: 4px;
+}
+.product-info .buy.soon { border-bottom-color: rgba(255,255,255,.3); color: var(--muted); }
+.affiliate-note { color: var(--muted); font-size: 11px; margin: 26px 0 0; }
+
+/* VIDEOS */
+.video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+.video-card { background: var(--panel); border: 1px solid var(--line); padding: 16px; }
+.video-frame { width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; display: block; }
+.video-card h3 { font: 400 24px/1.2 Georgia, serif; margin: 16px 4px 4px; }
+.video-card p { margin: 0 4px 6px; color: var(--muted); font-size: 13px; }
+
+/* JOURNAL */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.blog-card { border-top: 1px solid var(--line); padding-top: 20px; }
+.blog-card .number { color: var(--pink); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+.blog-card h3 { font: 400 25px/1.2 Georgia, serif; margin: 12px 0; }
+.blog-card p { color: var(--muted); font-size: 13px; }
+.blog-card a { display: inline-block; margin-top: 8px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; border-bottom: 1px solid var(--pink); padding-bottom: 5px; }
+
+/* ABOUT, NEWSLETTER, FOOTER */
+.artist {
+  padding: 80px 5%;
+  background: radial-gradient(ellipse at 85% 50%, rgba(49,92,255,.25), transparent 40%), #10101d;
+  border-bottom: 1px solid var(--line);
+}
+.artist-inner { max-width: 1100px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+.artist h2 { font: 400 clamp(35px, 5vw, 65px)/1.05 Georgia, serif; margin: 15px 0; }
+.artist p { max-width: 570px; color: var(--muted); font-size: 14px; }
+
+.newsletter { padding: 65px 5%; text-align: center; background: #0e0c18; }
+.newsletter h2 { font: 400 clamp(32px, 5vw, 52px) Georgia, serif; margin: 12px 0; }
+.newsletter p { color: var(--muted); font-size: 13px; }
+.newsletter form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 25px auto 0; }
+.newsletter input { width: min(360px, 100%); padding: 13px; color: white; background: #151321; border: 1px solid #555064; }
+.newsletter button { padding: 13px 20px; border: 0; color: white; background: var(--pink); letter-spacing: 1px; font-size: 11px; }
+.newsletter .soon-panel { max-width: 560px; margin: 25px auto 0; padding: 36px 20px; }
+
+footer { padding: 35px 5%; background: #05050a; }
+.footer-inner { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+footer p, footer a { color: var(--muted); font-size: 12px; }
+footer a:hover { color: var(--pink); }
+footer .brand { color: var(--white); }
+
+@media (max-width: 850px) {
+  header { flex-wrap: wrap; padding: 20px 5%; }
+  nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
+  .hero { min-height: 590px; }
+  .hero-art { left: 15%; opacity: .6; }
+  .hero-content { width: 100%; }
+  .radio-wrap { grid-template-columns: 1fr; }
+  .now { border-right: 0; border-bottom: 1px solid var(--line); }
+  .products { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .category-grid { grid-template-columns: 1fr; }
+  .artist-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 540px) {
+  .brand { letter-spacing: 2px; }
+  .hero { min-height: 550px; padding: 60px 6%; }
+  .hero h1 { letter-spacing: -1.5px; }
+  .hero-art { left: 0; opacity: .4; }
+  .section { padding: 55px 0; }
+  .section-head { display: block; }
+  .products, .blog-grid, .video-grid { grid-template-columns: 1fr; }
+  .category { min-height: 300px; padding: 25px; }
+  .search { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important; transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a class="brand" href="#home">FANCIE'S <span>WORLD</span></a>
+  <nav aria-label="Main navigation">
+    <a href="#radio">Radio</a>
+    <a href="#shop">Shop</a>
+    <a href="#music">Music</a>
+    <a href="#journal">Journal</a>
+  </nav>
+  <div class="socials" id="socials"></div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-art" id="heroArt" role="img" aria-label="Fancie"></div>
+  <div class="hero-content">
+    <div class="kicker">Fashion • Beauty • Music • Lifestyle</div>
+    <h1>Your world.<br><span>Your sound.</span></h1>
+    <p>
+      A world of expressive style, beauty discoveries, original music,
+      and living on your own terms. Curated for those who never blend in.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#shop">Explore the world&nbsp; ↗</a>
+      <a class="btn btn-pink" href="#radio">Listen to the radio&nbsp; ▶</a>
+    </div>
+  </div>
+</section>
+
+<!-- RADIO -->
+<section class="section" id="radio">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">Live radio</div>
+        <h2>Fancie Radio.</h2>
+      </div>
+      <p>Thousands of live stations from around the world. Pick a genre or search by name.</p>
+    </div>
+
+    <div class="radio-wrap">
+      <div class="now">
+        <div class="eq" id="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="now-label">Now playing</div>
+        <h3 class="now-title" id="nowTitle">Choose a station</h3>
+        <p class="now-meta" id="nowMeta">Pick any station from the list to start listening.</p>
+        <div class="controls">
+          <button class="rbtn solid" id="btnPlay" type="button">▶ Play</button>
+          <button class="rbtn" id="btnStop" type="button">■ Stop</button>
+          <button class="rbtn" id="btnRandom" type="button">⟳ Surprise me</button>
+        </div>
+        <label class="vol">Vol
+          <input id="volume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="Volume">
+        </label>
+        <p class="radio-status" id="radioStatus" role="status" aria-live="polite"></p>
+        <audio id="radioAudio" preload="none"></audio>
+      </div>
+
+      <div class="browser">
+        <form class="search" id="searchForm" role="search">
+          <label for="searchInput" class="sr-only">Search stations by name</label>
+          <input id="searchInput" type="search" placeholder="Search stations (name, city, style)…" autocomplete="off">
+          <button class="rbtn" type="submit">Search</button>
+        </form>
+        <div class="chips" id="chips" role="group" aria-label="Genres"></div>
+        <ul class="stations" id="stations" aria-label="Stations"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="section" id="shop">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The collection</div>
+        <h2>Style without limits.</h2>
+      </div>
+      <p>Distinctive pieces. Beauty essentials. Your own signature look.</p>
+    </div>
+    <div class="category-grid" id="categoryGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">Selected for you</div>
+        <h2>The Fancie edit.</h2>
+      </div>
+      <p>Select a piece to go straight to where you can buy it.</p>
+    </div>
+    <div id="productArea"></div>
+    <p class="affiliate-note" id="affiliateNote"></p>
+  </div>
+</section>
+
+<!-- MUSIC VIDEOS -->
+<section class="section" id="music">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The artist • The sound</div>
+        <h2>Enter the music.</h2>
+      </div>
+      <p>Discover FANCIE's sound, releases, and creative world.</p>
+    </div>
+    <div id="musicArea"></div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section class="section" id="journal">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The journal</div>
+        <h2>A life well curated.</h2>
+      </div>
+      <p>Ideas, inspiration, and fresh perspectives for your everyday.</p>
+    </div>
+    <div id="journalArea"></div>
+  </div>
+</section>
+
+<!-- LIVING VIDEOS -->
+<section class="section" id="cooking">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The living room</div>
+        <h2>Good food. Better living.</h2>
+      </div>
+      <p>Cooking, recipes, wellness, and fresh inspiration for everyday life.</p>
+    </div>
+    <div id="livingArea"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="artist" id="about">
+  <div class="artist-inner">
+    <div>
+      <div class="overline" id="aboutKicker"></div>
+      <h2 id="aboutTitle"></h2>
+    </div>
+    <div>
+      <p id="aboutText"></p>
+      <a class="btn btn-primary" id="aboutLink" href="#" hidden></a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="overline">The inside edit</div>
+  <h2>A little Fancie in your inbox.</h2>
+  <p>Updates on new music, collections, and stories.</p>
+  <div id="newsletterArea"></div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a class="brand" href="#home">FANCIE'S <span>WORLD</span></a>
+      <p>Fashion, beauty, music, and living differently.</p>
+    </div>
+    <div>
+      <a href="#radio">Radio</a> ·
+      <a href="#shop">Shop</a> ·
+      <a href="#music">Music</a> ·
+      <a href="#journal">Journal</a> ·
+      <a id="contactLink" href="#">Contact</a>
+      <p>© <span id="year"></span> Fancie's World.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   EDIT YOUR SITE HERE. Everything you can change is in this one block.
+
+   HOW TO ADD:    copy one { ... }, block inside a list, paste it right
+                  below, and change the words.
+   HOW TO REMOVE: delete that whole { ... }, block.
+   Keep the commas between blocks and keep the quote marks "like this".
+   An empty list [ ] makes that section show "Coming soon" automatically.
+   ========================================================================= */
+const SITE = {
+
+  /* ---- HERO PHOTO: file name in your repository ---- */
+  heroImage: "hero.jpg",
+
+  /* ---- SOCIAL LINKS (must start with https://). Leave "" to hide. ---- */
+  social: { instagram: "", youtube: "", spotify: "" },
+
+  /* ---- CONTACT EMAIL in the footer ---- */
+  contactEmail: "info@fanciemusic.com",
+
+  /* ---- SHOP CARDS (big cards). No link = "Coming soon" button. ---- */
+  categories: [
+    { kicker: "Apparel • Statement pieces", title: "Brat Tease.",
+      text: "Graphic T-shirts and expressive streetwear for a mood all your own.",
+      url: "", label: "Shop Brat Tease", theme: "" },
+    { kicker: "Beauty • Self-expression", title: "The Beauty Edit.",
+      text: "Curated beauty, self-care, and accessories for your everyday ritual.",
+      url: "#products", label: "Discover beauty", theme: "beauty" }
+  ],
+
+  /* ---- PRODUCTS. A product with no link shows "Coming soon".
+         image: optional photo file, like "images/skintech.jpg". ---- */
+  products: [
+    { name: "SkinTechSculpt Slimming Iron", meta: "Beauty · Self-care",
+      url: "https://www.walmart.com/ip/SkinTechSculpt-Slimming-Iron/15178102411",
+      label: "Buy on Walmart", image: "", style: "beauty-img", mark: "SKINTECH<br>SCULPT" },
+    { name: "Fancie K Publishing", meta: "Books · Journals",
+      url: "https://www.amazon.com/author/fanciekpublishing",
+      label: "See books on Amazon", image: "", style: "book-img", mark: "FANCIE K<br>PUBLISHING" },
+    { name: "Brat Tease", meta: "Apparel · Statement tees",
+      url: "", label: "", image: "", style: "", mark: "BRAT TEASE<br>COLLECTION" }
+  ],
+
+  /* Use the exact wording your Walmart / Amazon program requires. */
+  affiliateNote: "Some links may be affiliate links, which means Fancie's World may earn a small commission at no extra cost to you.",
+
+  /* ---- MUSIC VIDEOS. id = the part of a YouTube link after v= ----
+     Example:  { id: "dQw4w9WgXcQ", title: "My new song", text: "Out now." },  */
+  musicVideos: [
+  ],
+
+  /* ---- JOURNAL POSTS. url is optional (leave "" for no link). ----
+     Example:  { tag: "Beauty", title: "My routine", text: "Short summary.", url: "", linkLabel: "Read more" },  */
+  journalPosts: [
+  ],
+
+  /* ---- COOKING / LIVING VIDEOS (same format as music videos) ---- */
+  livingVideos: [
+  ],
+
+  /* ---- ABOUT SECTION ---- */
+  about: {
+    kicker: "Meet FANCIE",
+    titleLines: ["A voice. A vision.", "A world of her own."],
+    text: "FANCIE brings music, personal style, beauty, and creative expression together in one destination. Welcome to the world behind the sound.",
+    url: "", label: "Explore FANCIE"          /* optional button, e.g. your YouTube */
+  },
+
+  /* ---- NEWSLETTER: paste your signup form address (starts with https://)
+         from Formspree, Mailchimp, Kit, etc. Blank = "Coming soon". ---- */
+  newsletterAction: "",
+
+  /* ---- RADIO ---- */
+  radio: {
+    /* Genre buttons. label = what people see, tag = what the directory searches. */
+    genres: [
+      { label: "Top stations", tag: "" },
+      { label: "Hip-Hop", tag: "hip hop" },
+      { label: "R&B", tag: "rnb" },
+      { label: "Pop", tag: "pop" },
+      { label: "Gospel", tag: "gospel" },
+      { label: "Jazz", tag: "jazz" },
+      { label: "Reggae", tag: "reggae" },
+      { label: "Latin", tag: "latin" },
+      { label: "Dance", tag: "dance" },
+      { label: "Chill", tag: "chillout" },
+      { label: "Rock", tag: "rock" },
+      { label: "Country", tag: "country" },
+      { label: "Oldies", tag: "oldies" }
+    ],
+    /* YOUR OWN PICKS: add any station with an https:// stream address. */
+    favorites: [
+      { name: "SomaFM · Groove Salad", url: "https://ice2.somafm.com/groovesalad-128-mp3" },
+      { name: "SomaFM · Secret Agent", url: "https://ice2.somafm.com/secretagent-128-mp3" },
+      { name: "SomaFM · DEF CON", url: "https://ice2.somafm.com/defcon-128-mp3" }
+    ]
+  }
+};
+/* ======================= END OF THE EDITABLE BLOCK ======================= */
+
+
+/* ----------------------- everything below runs the site ----------------------- */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const isLive = (u) => /^https:\/\//i.test(u || "");
+const isYT = (id) => /^[A-Za-z0-9_-]{6,15}$/.test((id || "").trim());
+
+function soon(text) {
+  return `<div class="soon-panel"><div class="overline">Fancie's World</div><strong>Coming soon</strong><p>${esc(text || "New things are on the way.")}</p></div>`;
+}
+
+/* HERO PHOTO */
+(function () {
+  const art = $("#heroArt");
+  if (!SITE.heroImage) return;
+  const img = new Image();
+  img.onload = () => {
+    art.style.backgroundImage =
+      'linear-gradient(90deg, #080711 0%, rgba(8,7,17,0) 45%), linear-gradient(0deg, #080711, rgba(8,7,17,0) 25%), url("' +
+      SITE.heroImage.replace(/"/g, "%22") + '")';
+  };
+  img.onerror = () => console.warn("Hero photo not found: " + SITE.heroImage + ". Check the file name in your repository.");
+  img.src = SITE.heroImage;
+})();
+
+/* SOCIAL ICONS */
+const ICONS = {
+  instagram: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 9l5.2 3L10 15z" fill="#080711"/></svg>',
+  spotify: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="currentColor"/><path d="M6.6 9.1c3.7-1.1 7.9-.8 10.9 1M7.3 12.3c3.1-.9 6.4-.6 9 .9M8 15.3c2.4-.6 4.9-.4 6.9.7" stroke="#080711" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>'
+};
+const NAMES = { instagram: "Instagram", youtube: "YouTube", spotify: "Spotify" };
+$("#socials").innerHTML = Object.keys(ICONS).filter((k) => isLive(SITE.social[k])).map((k) =>
+  `<a href="${esc(SITE.social[k])}" target="_blank" rel="noopener noreferrer" aria-label="${NAMES[k]}">${ICONS[k]}</a>`).join("");
+
+/* CATEGORIES */
+$("#categoryGrid").innerHTML = SITE.categories.map((c) => {
+  const live = isLive(c.url) || (c.url || "").startsWith("#");
+  const ext = isLive(c.url);
+  const btn = live
+    ? `<a class="btn ${c.theme === "beauty" ? "" : "btn-pink"}" href="${esc(c.url)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ""}>${esc(c.label)} ↗</a>`
+    : `<span class="btn btn-soon">Coming soon</span>`;
+  return `<article class="category ${esc(c.theme)}"><div class="category-content">
+    <div class="overline">${esc(c.kicker)}</div><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p>${btn}</div></article>`;
+}).join("") || soon("Shop categories are on the way.");
+
+/* PRODUCTS */
+(function () {
+  const list = SITE.products;
+  if (!list.length) { $("#productArea").innerHTML = soon("New pieces are on the way."); return; }
+  $("#productArea").innerHTML = '<div class="products">' + list.map((p) => {
+    const live = isLive(p.url);
+    const media = p.image ? `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">` : `<span>${p.mark || esc(p.name)}</span>`;
+    const cls = "product-image " + esc(p.style || "");
+    const image = live
+      ? `<a class="${cls}" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer sponsored" aria-label="${esc(p.name)} (opens in a new tab)">${media}</a>`
+      : `<div class="${cls}">${media}</div>`;
+    const link = live
+      ? `<a class="buy" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer sponsored">${esc(p.label || "Shop")} ↗</a>`
+      : `<span class="buy soon">Coming soon</span>`;
+    return `<article class="product">${image}<div class="product-info"><h3>${esc(p.name)}</h3><p>${esc(p.meta)}</p>${link}</div></article>`;
+  }).join("") + "</div>";
+  $("#affiliateNote").textContent = SITE.affiliateNote || "";
+})();
+
+/* VIDEOS */
+function renderVideos(target, list, soonText) {
+  const ok = list.filter((v) => isYT(v.id));
+  if (!ok.length) { $(target).innerHTML = soon(soonText); return; }
+  $(target).innerHTML = '<div class="video-grid">' + ok.map((v) => `
+    <article class="video-card">
+      <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/${esc(v.id.trim())}" title="${esc(v.title || "Video")}"
+        loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <h3>${esc(v.title)}</h3>${v.text ? `<p>${esc(v.text)}</p>` : ""}
+    </article>`).join("") + "</div>";
+}
+renderVideos("#musicArea", SITE.musicVideos, "New music and videos are on the way.");
+renderVideos("#livingArea", SITE.livingVideos, "Recipes and lifestyle videos are on the way.");
+
+/* JOURNAL */
+(function () {
+  const list = SITE.journalPosts;
+  if (!list.length) { $("#journalArea").innerHTML = soon("Fresh stories are on the way."); return; }
+  $("#journalArea").innerHTML = '<div class="blog-grid">' + list.map((p, i) => `
+    <article class="blog-card">
+      <div class="number">${String(i + 1).padStart(2, "0")} / ${esc(p.tag)}</div>
+      <h3>${esc(p.title)}</h3><p>${esc(p.text)}</p>
+      ${isLive(p.url) ? `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.linkLabel || "Read more")} ↗</a>` : ""}
+    </article>`).join("") + "</div>";
+})();
+
+/* ABOUT */
+(function () {
+  const a = SITE.about;
+  $("#aboutKicker").textContent = a.kicker;
+  $("#aboutTitle").innerHTML = a.titleLines.map(esc).join("<br>");
+  $("#aboutText").textContent = a.text;
+  if (isLive(a.url)) {
+    const l = $("#aboutLink");
+    l.href = a.url; l.target = "_blank"; l.rel = "noopener noreferrer";
+    l.textContent = (a.label || "Learn more") + " ↗"; l.hidden = false;
+  }
+})();
+
+/* NEWSLETTER */
+(function () {
+  const box = $("#newsletterArea");
+  if (!isLive(SITE.newsletterAction)) { box.innerHTML = soon("Email signup opens soon."); return; }
+  box.innerHTML = `<form action="${esc(SITE.newsletterAction)}" method="post" target="_blank">
+    <label for="nlEmail" class="sr-only">Email address</label>
+    <input type="email" id="nlEmail" name="email" placeholder="Email address" autocomplete="email" required>
+    <button type="submit">JOIN THE LIST ↗</button></form>`;
+})();
+
+/* FOOTER */
+(function () {
+  const c = $("#contactLink");
+  if (SITE.contactEmail) c.href = "mailto:" + SITE.contactEmail; else c.remove();
+  $("#year").textContent = new Date().getFullYear();
+})();
+
+
+/* =========================== RADIO ===========================
+   Stations come from the free community directory radio-browser.info.
+   Only secure (https) streams are listed so they play on your site. */
+const audio = $("#radioAudio"), eq = $("#eq");
+const nowTitle = $("#nowTitle"), nowMeta = $("#nowMeta"), radioStatus = $("#radioStatus");
+const btnPlay = $("#btnPlay"), stationsEl = $("#stations"), chipsEl = $("#chips");
+const FALLBACK_BASES = ["https://de1.api.radio-browser.info", "https://nl1.api.radio-browser.info", "https://at1.api.radio-browser.info"];
+let bases = null, list = [], idx = -1, failStreak = 0, activeChip = 0;
+
+function fetchTimeout(url, ms) {
+  const c = new AbortController();
+  const t = setTimeout(() => c.abort(), ms);
+  return fetch(url, { signal: c.signal }).finally(() => clearTimeout(t));
+}
+async function getBases() {
+  if (bases) return bases;
+  let found = [];
+  try {
+    const r = await fetchTimeout("https://all.api.radio-browser.info/json/servers", 4000);
+    const arr = await r.json();
+    found = arr.map((s) => "https://" + s.name).sort(() => Math.random() - .5).slice(0, 3);
+  } catch (e) {}
+  bases = found.concat(FALLBACK_BASES.filter((b) => !found.includes(b)));
+  return bases;
+}
+async function api(path) {
+  for (const b of await getBases()) {
+    try {
+      const r = await fetchTimeout(b + path, 8000);
+      if (r.ok) return await r.json();
+    } catch (e) {}
+  }
+  throw new Error("directory unavailable");
+}
+
+function normalize(arr) {
+  const seen = new Set();
+  return arr.filter((s) => s.url_resolved && /^https:\/\//i.test(s.url_resolved) && s.hls !== 1 && s.name && s.name.trim())
+    .map((s) => ({
+      name: s.name.trim(), url: s.url_resolved, uuid: s.stationuuid,
+      meta: [s.country, s.bitrate ? s.bitrate + " kbps" : "", (s.tags || "").split(",").slice(0, 2).join(", ")].filter(Boolean).join(" · ")
+    }))
+    .filter((s) => { const k = s.name.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
+}
+
+function renderList(items, emptyMsg) {
+  list = items; idx = -1;
+  if (!items.length) { stationsEl.innerHTML = `<li class="list-note">${esc(emptyMsg || "No stations found. Try another genre or search.")}</li>`; return; }
+  stationsEl.innerHTML = items.map((s, i) =>
+    `<li data-i="${i}"><button type="button" data-i="${i}"><span class="st-name">${esc(s.name)}</span><span class="st-play">▶</span><span class="st-meta">${esc(s.meta || "Live radio")}</span></button></li>`).join("");
+}
+
+async function loadStations(params, label) {
+  stationsEl.innerHTML = '<li class="list-note">Loading stations…</li>';
+  try {
+    const q = new URLSearchParams(Object.assign({ hidebroken: "true", is_https: "true", order: "clickcount", reverse: "true", limit: "80" }, params));
+    const data = await api("/json/stations/search?" + q.toString());
+    renderList(normalize(data));
+  } catch (e) {
+    stationsEl.innerHTML = '<li class="list-note">The station directory is not reachable right now. Check your connection, try again, or use "My picks."</li>';
+  }
+}
+
+/* chips */
+function buildChips() {
+  const chips = [];
+  if (SITE.radio.favorites.length) chips.push({ label: "My picks", fav: true });
+  SITE.radio.genres.forEach((g) => chips.push(g));
+  chipsEl.innerHTML = chips.map((c, i) => `<button class="chip" type="button" data-c="${i}" aria-pressed="false">${esc(c.label)}</button>`).join("");
+  chipsEl._chips = chips;
+}
+function selectChip(i) {
+  activeChip = i;
+  chipsEl.querySelectorAll(".chip").forEach((b, n) => b.setAttribute("aria-pressed", String(n === i)));
+  const c = chipsEl._chips[i];
+  $("#searchInput").value = "";
+  if (c.fav) {
+    renderList(SITE.radio.favorites.filter((f) => isLive(f.url)).map((f) => ({ name: f.name, url: f.url, meta: "Fancie's pick" })));
+  } else {
+    loadStations(c.tag ? { tag: c.tag } : {});
+  }
+}
+chipsEl.addEventListener("click", (e) => { const b = e.target.closest("[data-c]"); if (b) selectChip(+b.dataset.c); });
+
+$("#searchForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const v = $("#searchInput").value.trim();
+  if (!v) return;
+  chipsEl.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+  loadStations({ name: v });
+});
+
+/* playback */
+function setPlaying(on) { eq.classList.toggle("playing", on); btnPlay.textContent = on ? "Ⅱ Pause" : "▶ Play"; }
+
+function playStation(i) {
+  const s = list[i];
+  if (!s) return;
+  idx = i;
+  stationsEl.querySelectorAll("li").forEach((li) => li.classList.toggle("active", +li.dataset.i === i));
+  nowTitle.textContent = s.name;
+  nowMeta.textContent = s.meta || "Live radio";
+  radioStatus.textContent = "Connecting…";
+  audio.src = s.url;
+  audio.play().then(() => { failStreak = 0; setPlaying(true); }).catch(() => handleFail());
+  if (s.uuid && bases) fetchTimeout(bases[0] + "/json/url/" + s.uuid, 4000).catch(() => {});
+}
+function handleFail() {
+  setPlaying(false);
+  failStreak++;
+  if (failStreak <= 3 && list.length > 1 && idx >= 0) {
+    radioStatus.textContent = "That station is offline. Trying the next one…";
+    playStation((idx + 1) % list.length);
+  } else {
+    radioStatus.textContent = "That station isn't available. Please pick another.";
+    failStreak = 0;
+  }
+}
+
+stationsEl.addEventListener("click", (e) => { const b = e.target.closest("button[data-i]"); if (b) { failStreak = 0; playStation(+b.dataset.i); } });
+
+btnPlay.addEventListener("click", () => {
+  if (!audio.getAttribute("src")) {
+    if (list.length) { playStation(idx >= 0 ? idx : 0); } else { radioStatus.textContent = "Pick a station from the list first."; }
+    return;
+  }
+  if (audio.paused) { audio.play().then(() => setPlaying(true)).catch(() => handleFail()); radioStatus.textContent = ""; }
+  else { audio.pause(); setPlaying(false); radioStatus.textContent = "Paused."; }
+});
+$("#btnStop").addEventListener("click", () => {
+  audio.pause(); audio.removeAttribute("src"); audio.load();
+  setPlaying(false); radioStatus.textContent = "Stopped.";
+  nowTitle.textContent = "Choose a station"; nowMeta.textContent = "Pick any station from the list to start listening.";
+  stationsEl.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
+});
+$("#btnRandom").addEventListener("click", () => {
+  if (!list.length) { radioStatus.textContent = "Load some stations first."; return; }
+  failStreak = 0; playStation(Math.floor(Math.random() * list.length));
+});
+$("#volume").addEventListener("input", (e) => { audio.volume = +e.target.value; });
+audio.volume = 0.8;
+
+audio.addEventListener("playing", () => { setPlaying(true); radioStatus.textContent = "Live now."; });
+audio.addEventListener("waiting", () => { radioStatus.textContent = "Buffering…"; });
+audio.addEventListener("error", () => { if (audio.getAttribute("src")) handleFail(); });
+
+buildChips();
+selectChip(SITE.radio.genres.length ? (SITE.radio.favorites.length ? 1 : 0) : 0);
+</script>
+</body>
+</html>
