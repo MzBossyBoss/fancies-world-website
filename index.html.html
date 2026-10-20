@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080711">
+<title>Fancie's World | Fashion, Beauty & Music</title>
+<meta name="description" content="Discover Fancie's World. Fashion, beauty, music, and modern living.">
+
+<style>
+:root {
+  --black: #080711;
+  --panel: #11101d;
+  --white: #f7f4fb;
+  --muted: #bcb7ca;
+  --pink: #fa22b8;
+  --blue: #315cff;
+  --yellow: #f4d85b;
+  --line: rgba(255,255,255,.15);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+button, .btn { cursor: pointer; }
+button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+section[id] { scroll-margin-top: 10px; }
+
+header {
+  min-height: 76px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  z-index: 5;
+  background: rgba(8,7,17,.92);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: Georgia, serif;
+  font-size: clamp(19px, 2.6vw, 31px);
+  letter-spacing: 5px;
+  white-space: nowrap;
+}
+.brand span { color: var(--pink); }
+nav { display: flex; gap: clamp(15px, 3vw, 42px); }
+nav a {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #e7e2ef;
+  transition: color .2s;
+}
+nav a:hover { color: var(--pink); }
+.socials { display: flex; gap: 16px; min-width: 20px; }
+.socials a { width: 20px; height: 20px; color: #e7e2ef; transition: color .2s, transform .2s; }
+.socials a:hover { color: var(--pink); transform: translateY(-2px); }
+.socials svg { width: 20px; height: 20px; display: block; }
+
+.hero {
+  min-height: 650px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 80px 5%;
+  background:
+    radial-gradient(ellipse at 76% 28%, rgba(49,92,255,.56), transparent 35%),
+    radial-gradient(ellipse at 68% 70%, rgba(250,34,184,.3), transparent 37%),
+    linear-gradient(105deg, #100715, #11102c 55%, #080711);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8,7,17,.15), rgba(8,7,17,.03) 65%, rgba(8,7,17,.35)),
+    linear-gradient(0deg, var(--black), transparent 35%);
+}
+/* Your hero photo is added by the script (see CONFIG.heroImage). */
+.hero-art {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 34%;
+  background-image:
+    linear-gradient(90deg, var(--black) 0%, transparent 45%),
+    linear-gradient(0deg, var(--black), transparent 25%),
+    var(--hero-img, none);
+  background-size: cover;
+  background-position: center 30%;
+  opacity: .88;
+}
+.hero-content {
+  width: min(720px, 70%);
+  animation: reveal 1s ease both;
+}
+.kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--pink);
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(47px, 7.4vw, 100px);
+  font-weight: 400;
+  letter-spacing: -3px;
+  line-height: .99;
+  margin: 25px 0;
+  text-transform: uppercase;
+}
+.hero h1 span { color: #e9e4f6; }
+.hero p {
+  max-width: 480px;
+  font-size: 15px;
+  color: #d4cedf;
+}
+.actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.btn {
+  padding: 13px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.75);
+  color: white;
+  background: transparent;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  transition: background .2s, color .2s, transform .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: white; color: #111; border-color: white; }
+.btn-primary:hover { background: var(--yellow); border-color: var(--yellow); }
+.btn-pink { border-color: var(--pink); }
+.btn-pink:hover { background: var(--pink); }
+.btn-soon { border-color: rgba(255,255,255,.35); color: var(--muted); cursor: default; }
+.btn-soon:hover { transform: none; }
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RADIO */
+.radio {
+  padding: 18px 5%;
+  background: #0c0b15;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: auto 1fr minmax(190px, 310px) auto;
+  align-items: center;
+  gap: 22px;
+}
+.radio-name {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  letter-spacing: 4px;
+  white-space: nowrap;
+}
+.radio-name span { color: var(--pink); }
+.radio-sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; }
+.radio select {
+  width: 100%;
+  min-width: 0;
+  color: white;
+  background: #151321;
+  border: 1px solid #555064;
+  padding: 12px;
+}
+.radio select option { background: #151321; }
+.radio-controls { display: flex; gap: 9px; }
+.radio-controls button {
+  border: 1px solid var(--pink);
+  color: white;
+  background: transparent;
+  padding: 10px 14px;
+  transition: background .2s;
+}
+.radio-controls button:hover { background: var(--pink); }
+.radio-status { grid-column: 1 / -1; color: var(--muted); font-size: 11px; margin: 0; }
+
+/* PAGE SECTIONS */
+.container { width: min(1250px, 90%); margin: auto; }
+.section { padding: 85px 0; border-bottom: 1px solid var(--line); }
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  margin-bottom: 32px;
+}
+.section-head h2 {
+  margin: 10px 0 0;
+  font: 400 clamp(34px, 5vw, 56px)/1.1 Georgia, serif;
+}
+.section-head p { color: var(--muted); max-width: 440px; font-size: 13px; }
+.overline {
+  color: var(--pink);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.category {
+  min-height: 360px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(140deg, #16142c, #222d65);
+  border: 1px solid var(--line);
+}
+.category::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  right: -50px;
+  top: -50px;
+  background: radial-gradient(circle, rgba(250,34,184,.45), transparent 70%);
+}
+.category.beauty { background: linear-gradient(140deg, #25101f, #392044); }
+.category.beauty::before { background: radial-gradient(circle, rgba(244,216,91,.3), transparent 70%); }
+.category-content { position: relative; }
+.category h3 {
+  font: 400 clamp(36px, 5vw, 58px)/1 Georgia, serif;
+  margin: 12px 0;
+}
+.category p { color: #d0cbd9; max-width: 360px; font-size: 13px; }
+.category .btn { margin-top: 15px; }
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.product { min-width: 0; }
+.product-image {
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(49,92,255,.38), transparent 55%),
+    #151320;
+  border: 1px solid var(--line);
+  color: rgba(255,255,255,.7);
+  font: 13px Georgia, serif;
+  letter-spacing: 2px;
+  transition: border-color .3s, box-shadow .3s;
+}
+a.product-image:hover { border-color: var(--pink); box-shadow: 0 18px 50px rgba(250,34,184,.22); }
+.product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-image.beauty-img {
+  background:
+    radial-gradient(ellipse at 55% 30%, rgba(250,34,184,.28), transparent 55%),
+    #1b111d;
+}
+.product-image.book-img {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(244,216,91,.22), transparent 55%),
+    #17151b;
+}
+.product-image span { text-align: center; padding: 20px; }
+.product-info { padding: 14px 0; }
+.product-info h3 { margin: 0; font-size: 15px; font-weight: 500; }
+.product-info p { color: var(--muted); font-size: 12px; margin: 6px 0; }
+.product-info .buy {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--pink);
+  padding-bottom: 4px;
+}
+.product-info .buy.soon { border-bottom-color: rgba(255,255,255,.3); color: var(--muted); }
+.affiliate-note { color: var(--muted); font-size: 11px; margin: 26px 0 0; }
+
+.feature-video {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+  display: block;
+}
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(49,92,255,.4), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(250,34,184,.28), transparent 55%),
+    #0a0914;
+}
+.play-ring {
+  width: 54px; height: 54px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.6);
+  display: grid; place-items: center; margin: 0 auto 12px; font-size: 14px; color: white;
+}
+.video-copy { padding: clamp(20px, 4vw, 45px); align-self: center; }
+.video-copy h3 {
+  font: 400 clamp(28px, 3.6vw, 43px)/1.1 Georgia, serif;
+  margin: 15px 0;
+}
+.video-copy p { font-size: 13px; color: var(--muted); }
+.video-copy .btn { margin-top: 15px; }
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.blog-card { border-top: 1px solid var(--line); padding-top: 20px; }
+.blog-card .number { color: var(--pink); font-size: 11px; letter-spacing: 2px; }
+.blog-card h3 { font: 400 25px/1.2 Georgia, serif; margin: 12px 0; }
+.blog-card p { color: var(--muted); font-size: 13px; }
+.blog-card a {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--pink);
+  padding-bottom: 5px;
+}
+
+.artist {
+  padding: 80px 5%;
+  background:
+    radial-gradient(ellipse at 85% 50%, rgba(49,92,255,.25), transparent 40%),
+    #10101d;
+  border-bottom: 1px solid var(--line);
+}
+.artist-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+.artist h2 {
+  font: 400 clamp(35px, 5vw, 65px)/1.05 Georgia, serif;
+  margin: 15px 0;
+}
+.artist p { max-width: 570px; color: var(--muted); font-size: 14px; }
+
+.newsletter {
+  padding: 65px 5%;
+  text-align: center;
+  background: #0e0c18;
+}
+.newsletter h2 { font: 400 clamp(32px, 5vw, 52px) Georgia, serif; margin: 12px 0; }
+.newsletter p { color: var(--muted); font-size: 13px; }
+.newsletter form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 25px auto 0;
+}
+.newsletter input {
+  width: min(360px, 100%);
+  padding: 13px;
+  color: white;
+  background: #151321;
+  border: 1px solid #555064;
+}
+.newsletter button {
+  padding: 13px 20px;
+  border: 0;
+  color: white;
+  background: var(--pink);
+  letter-spacing: 1px;
+  font-size: 11px;
+}
+footer { padding: 35px 5%; background: #05050a; }
+.footer-inner {
+  max-width: 1250px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+footer p, footer a { color: var(--muted); font-size: 12px; }
+footer a:hover { color: var(--pink); }
+footer .brand { color: var(--white); }
+
+@media (max-width: 850px) {
+  header { flex-wrap: wrap; padding: 20px 5%; }
+  nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
+  .hero { min-height: 590px; }
+  .hero-art { left: 15%; opacity: .55; }
+  .hero-content { width: 100%; }
+  .radio { grid-template-columns: 1fr auto; gap: 14px; }
+  .radio-sub { display: none; }
+  .radio select { grid-column: 1 / -1; }
+  .radio-controls { grid-column: 1 / -1; }
+  .feature-video { grid-template-columns: 1fr; }
+  .products { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .category-grid { grid-template-columns: 1fr; }
+  .artist-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 540px) {
+  .brand { letter-spacing: 2px; }
+  .hero { min-height: 550px; padding: 60px 6%; }
+  .hero h1 { letter-spacing: -1.5px; }
+  .hero-art { left: 0; opacity: .35; }
+  .section { padding: 55px 0; }
+  .section-head { display: block; }
+  .products, .blog-grid { grid-template-columns: 1fr; }
+  .category { min-height: 300px; padding: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a class="brand" href="#home">FANCIE'S <span>WORLD</span></a>
+  <nav aria-label="Main navigation">
+    <a href="#music">Music</a>
+    <a href="#shop">Shop</a>
+    <a href="#beauty">Beauty</a>
+    <a href="#journal">Journal</a>
+  </nav>
+  <div class="socials" id="socials"></div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-art" id="heroArt" role="img" aria-label="Editorial fashion portrait"></div>
+  <div class="hero-content">
+    <div class="kicker">Fashion • Beauty • Music • Lifestyle</div>
+    <h1>Your world.<br><span>Your sound.</span></h1>
+    <p>
+      A world of expressive style, beauty discoveries, original music,
+      and living on your own terms. Curated for those who never blend in.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#shop">Explore the world&nbsp; ↗</a>
+      <a class="btn btn-pink" href="#music">Listen to FANCIE&nbsp; ▶</a>
+    </div>
+  </div>
+</section>
+
+<!-- RADIO -->
+<section class="radio" aria-label="Internet radio player">
+  <div class="radio-name">FANCIE <span>RADIO</span></div>
+  <div class="radio-sub">CHOOSE YOUR SOUNDTRACK</div>
+  <label for="station" class="sr-only" style="position:absolute;left:-9999px">Choose radio station</label>
+  <select id="station">
+    <option value="https://ice2.somafm.com/groovesalad-128-mp3">SomaFM · Groove Salad</option>
+    <option value="https://ice2.somafm.com/secretagent-128-mp3">SomaFM · Secret Agent</option>
+    <option value="https://ice2.somafm.com/defcon-128-mp3">SomaFM · DEF CON</option>
+  </select>
+  <div class="radio-controls">
+    <button id="playRadio" type="button">▶ Play</button>
+    <button id="stopRadio" type="button">■ Stop</button>
+  </div>
+  <audio id="radioAudio" preload="none"></audio>
+  <p class="radio-status" id="radioStatus" role="status" aria-live="polite">
+    Select a station and press Play to start listening.
+  </p>
+</section>
+
+<section class="section" id="shop">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The collection</div>
+        <h2>Style without limits.</h2>
+      </div>
+      <p>Distinctive pieces. Beauty essentials. Your own signature look.</p>
+    </div>
+    <div class="category-grid">
+      <article class="category" id="brat-tease">
+        <div class="category-content">
+          <div class="overline">Apparel • Statement pieces</div>
+          <h3>Brat Tease.</h3>
+          <p>Graphic T-shirts and expressive streetwear for a mood all your own.</p>
+          <span class="btn btn-soon">Coming soon</span>
+        </div>
+      </article>
+      <article class="category beauty" id="beauty">
+        <div class="category-content">
+          <div class="overline">Beauty • Self-expression</div>
+          <h3>The Beauty Edit.</h3>
+          <p>Curated beauty, self-care, and accessories for your everyday ritual.</p>
+          <a class="btn" href="#products">Discover beauty ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">Selected for you</div>
+        <h2>The Fancie edit.</h2>
+      </div>
+      <p>Select a piece to go straight to where you can buy it.</p>
+    </div>
+    <div class="products" id="productGrid"></div>
+    <p class="affiliate-note" id="affiliateNote"></p>
+  </div>
+</section>
+
+<section class="section" id="music">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The artist • The sound</div>
+        <h2>Enter the music.</h2>
+      </div>
+      <p>Discover FANCIE's sound, releases, and creative world.</p>
+    </div>
+    <div class="feature-video">
+      <div class="video-slot" data-video="music" data-title="FANCIE music video"></div>
+      <div class="video-copy">
+        <div class="overline">Listen • Watch • Discover</div>
+        <h3>Music with a feeling.</h3>
+        <p>Explore original music, stories, and sounds from FANCIE.</p>
+        <a class="btn btn-pink yt-link" href="#" hidden>Discover the music ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="journal">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The journal</div>
+        <h2>A life well curated.</h2>
+      </div>
+      <p>Ideas, inspiration, and fresh perspectives for your everyday.</p>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <div class="number">01 / HEALTHY LIVING</div>
+        <h3>Everyday rituals, elevated.</h3>
+        <p>Simple meal ideas, mindful routines, and inspiration for living well.</p>
+        <a href="#cooking">EXPLORE THE STORY ↗</a>
+      </article>
+      <article class="blog-card">
+        <div class="number">02 / PERSONAL STYLE</div>
+        <h3>Wear your own point of view.</h3>
+        <p>Explore expressive styling, standout pieces, and the confidence to make them yours.</p>
+        <a href="#shop">FIND YOUR STYLE ↗</a>
+      </article>
+      <article class="blog-card">
+        <div class="number">03 / BEAUTY</div>
+        <h3>Your routine, your rules.</h3>
+        <p>Beauty discoveries and thoughtful self-care for a routine that suits you.</p>
+        <a href="#beauty">EXPLORE BEAUTY ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cooking">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="overline">The living room</div>
+        <h2>Good food. Better living.</h2>
+      </div>
+      <p>Cooking, recipes, wellness, and fresh inspiration for everyday life.</p>
+    </div>
+    <div class="feature-video">
+      <div class="video-slot" data-video="cooking" data-title="Healthy cooking and lifestyle video"></div>
+      <div class="video-copy">
+        <div class="overline">Watch • Cook • Live</div>
+        <h3>Make room for the good stuff.</h3>
+        <p>Cooking channels, healthy recipes, and lifestyle inspiration for everyday living.</p>
+        <a class="btn btn-pink yt-link" href="#" hidden>Explore videos ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="artist" id="about">
+  <div class="artist-inner">
+    <div>
+      <div class="overline">Meet FANCIE</div>
+      <h2>A voice. A vision.<br>A world of her own.</h2>
+    </div>
+    <div>
+      <p>
+        FANCIE brings music, personal style, beauty, and creative expression
+        together in one destination. Welcome to the world behind the sound.
+      </p>
+      <a class="btn btn-primary" id="aboutLink" href="#music">Explore FANCIE ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="overline">The inside edit</div>
+  <h2>A little Fancie in your inbox.</h2>
+  <p>Updates on new music, collections, and stories.</p>
+  <form id="newsletterForm">
+    <label for="newsletterEmail" style="position:absolute;left:-9999px">Email address</label>
+    <input type="email" id="newsletterEmail" placeholder="Email address" autocomplete="email" required>
+    <button type="submit">JOIN THE LIST ↗</button>
+  </form>
+  <p id="newsletterStatus" role="status" aria-live="polite"></p>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a class="brand" href="#home">FANCIE'S <span>WORLD</span></a>
+      <p>Fashion, beauty, music, and living differently.</p>
+    </div>
+    <div>
+      <a href="#shop">Shop</a> ·
+      <a href="#music">Music</a> ·
+      <a href="#journal">Journal</a> ·
+      <a href="mailto:info@fanciemusic.com">Contact</a>
+      <p>© <span id="year"></span> Fancie's World.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================
+   SETTINGS: EDIT THIS SECTION
+   ===================================================== */
+const CONFIG = {
+  // Your hero photo. Put the file in an "images" folder next to this page, e.g. "images/hero.jpg".
+  // Leave "" to show the colored glow background only.
+  heroImage: "",
+
+  // Your real social pages (must start with https://). Leave "" to hide an icon.
+  social: { instagram: "", youtube: "", spotify: "" },
+
+  // Paste only the YouTube video ID (the part after v= in a link). Leave "" for a placeholder.
+  videos: { music: "", cooking: "" },
+
+  // Use the exact wording your Walmart / Amazon program requires.
+  affiliateNote: "Some links may be affiliate links, which means Fancie's World may earn a small commission at no extra cost to you."
+};
+
+/* PRODUCTS: copy a block to add more.
+   image: optional real photo ("images/skintech.jpg"). Leave "" for the styled placeholder.
+   A card without a live https link shows "Coming soon". */
+const PRODUCTS = [
+  { name: "SkinTechSculpt Slimming Iron", meta: "Beauty · Self-care",
+    url: "https://www.walmart.com/ip/SkinTechSculpt-Slimming-Iron/15178102411",
+    label: "Buy on Walmart", image: "", art: "beauty-img", mark: "SKINTECH<br>SCULPT" },
+  { name: "Fancie K Publishing", meta: "Books · Journals",
+    url: "https://www.amazon.com/author/fanciekpublishing",
+    label: "See books on Amazon", image: "", art: "book-img", mark: "FANCIE K<br>PUBLISHING" },
+  { name: "Brat Tease", meta: "Apparel · Statement tees",
+    url: "", label: "", image: "", art: "", mark: "BRAT TEASE<br>COLLECTION" }
+];
+
+/* =====================================================
+   HELPERS
+   ===================================================== */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const isLive = (u) => /^https:\/\//i.test(u || "");
+
+/* Hero photo */
+if (CONFIG.heroImage) {
+  $("#heroArt").style.setProperty("--hero-img", 'url("' + CONFIG.heroImage.replace(/"/g, "%22") + '")');
+}
+
+/* Social icons */
+const ICONS = {
+  instagram: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 9l5.2 3L10 15z" fill="#080711"/></svg>',
+  spotify: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="currentColor"/><path d="M6.6 9.1c3.7-1.1 7.9-.8 10.9 1M7.3 12.3c3.1-.9 6.4-.6 9 .9M8 15.3c2.4-.6 4.9-.4 6.9.7" stroke="#080711" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>'
+};
+const NAMES = { instagram: "Instagram", youtube: "YouTube", spotify: "Spotify" };
+$("#socials").innerHTML = Object.keys(ICONS).filter((k) => isLive(CONFIG.social[k])).map((k) =>
+  `<a href="${esc(CONFIG.social[k])}" target="_blank" rel="noopener noreferrer" aria-label="${NAMES[k]}">${ICONS[k]}</a>`
+).join("");
+
+/* YouTube buttons and artist button appear only when you add your YouTube link */
+if (isLive(CONFIG.social.youtube)) {
+  document.querySelectorAll(".yt-link").forEach((a) => {
+    a.href = CONFIG.social.youtube;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.hidden = false;
+  });
+  const about = $("#aboutLink");
+  about.href = CONFIG.social.youtube;
+  about.target = "_blank";
+  about.rel = "noopener noreferrer";
+}
+
+/* Products */
+$("#productGrid").innerHTML = PRODUCTS.map((p) => {
+  const live = isLive(p.url);
+  const media = p.image
+    ? `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">`
+    : `<span>${p.mark}</span>`;
+  const cls = "product-image " + (p.art || "");
+  const image = live
+    ? `<a class="${cls}" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer sponsored" aria-label="${esc(p.name)} (opens in a new tab)">${media}</a>`
+    : `<div class="${cls}">${media}</div>`;
+  const link = live
+    ? `<a class="buy" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer sponsored">${esc(p.label)} ↗</a>`
+    : `<span class="buy soon">Coming soon</span>`;
+  return `<article class="product">${image}
+    <div class="product-info"><h3>${esc(p.name)}</h3><p>${esc(p.meta)}</p>${link}</div></article>`;
+}).join("");
+$("#affiliateNote").textContent = CONFIG.affiliateNote;
+
+/* Videos: a safe placeholder shows until you add a real YouTube ID */
+document.querySelectorAll(".video-slot").forEach((slot) => {
+  const id = (CONFIG.videos[slot.dataset.video] || "").trim();
+  if (/^[A-Za-z0-9_-]{6,15}$/.test(id)) {
+    const f = document.createElement("iframe");
+    f.className = "video-frame";
+    f.src = "https://www.youtube-nocookie.com/embed/" + id;
+    f.title = slot.dataset.title;
+    f.loading = "lazy";
+    f.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    f.allowFullscreen = true;
+    slot.appendChild(f);
+  } else {
+    slot.innerHTML = '<div class="video-placeholder"><div><div class="play-ring">▶</div>Video coming soon</div></div>';
+  }
+});
+
+/* =====================================================
+   RADIO
+   ===================================================== */
+const audio = $("#radioAudio");
+const station = $("#station");
+const playButton = $("#playRadio");
+const stopButton = $("#stopRadio");
+const radioStatus = $("#radioStatus");
+
+playButton.addEventListener("click", async () => {
+  const changed = audio.src !== station.value;
+  if (audio.paused || changed) {
+    if (changed) audio.src = station.value;
+    radioStatus.textContent = "Connecting to station...";
+    try {
+      await audio.play();
+      playButton.textContent = "Ⅱ Pause";
+      radioStatus.textContent = "Radio is playing. Stream availability may vary.";
+    } catch (err) {
+      playButton.textContent = "▶ Play";
+      radioStatus.textContent = "Unable to play this stream. Try another station.";
+    }
+  } else {
+    audio.pause();
+    playButton.textContent = "▶ Play";
+    radioStatus.textContent = "Radio paused.";
+  }
+});
+
+station.addEventListener("change", () => {
+  audio.pause();
+  audio.src = station.value;
+  playButton.textContent = "▶ Play";
+  radioStatus.textContent = "Station selected. Press Play to listen.";
+});
+
+stopButton.addEventListener("click", () => {
+  audio.pause();
+  audio.removeAttribute("src");
+  audio.load();
+  playButton.textContent = "▶ Play";
+  radioStatus.textContent = "Radio stopped.";
+});
+
+audio.addEventListener("error", () => {
+  if (!audio.getAttribute("src")) return;   /* ignore the reset that happens after Stop */
+  playButton.textContent = "▶ Play";
+  radioStatus.textContent = "Stream unavailable. Please choose another station.";
+});
+
+/* Newsletter (demo only: connect a newsletter service to collect emails) */
+$("#newsletterForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  $("#newsletterStatus").textContent =
+    "The signup form needs a connected newsletter service before it can collect subscribers.";
+});
+
+$("#year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
