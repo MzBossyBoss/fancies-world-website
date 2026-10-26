@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fancie's World | FANCIE — Music, Style, Beauty & Culture</title>
+<meta name="description" content="Fancie's World: music, personal style, beauty, and creative expression, curated through the world of FANCIE.">
+<meta name="theme-color" content="#101010">
+<meta property="og:title" content="Fancie's World">
+<meta property="og:description" content="Music, personal style, beauty, and creative expression, curated through the world of FANCIE.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101010'/%3E%3Ctext x='32' y='44' font-size='38' text-anchor='middle' fill='%23D6BD87' font-family='serif'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="announce" class="announce" hidden></div>
+<header class="site-header">
+  <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <a class="wordmark" href="#home">FANCIE’S WORLD</a>
+  <a id="bagLink" class="bag" href="#shop" aria-label="Shop">BAG</a>
+  <nav id="nav" class="nav" aria-label="Main">
+    <a href="#home">Home</a><a href="#artist">The Artist</a><a href="#music">Music</a><a href="#radio">Radio</a><a href="#shop">Shop</a><a href="#fashion">Fashion</a><a href="#beauty">Beauty</a><a href="#books">Books</a><a href="#journal">Journal</a>
+  </nav>
+</header>
+<main id="main">
+<section id="home" class="hero">
+  <img id="heroImg" src="images/fancies-world-hero.png" alt="FANCIE in black eveningwear against a gold nebula">
+  <div class="hero-copy">
+    <p class="eyebrow">THE ARTIST. THE VISION. THE WORLD.</p>
+    <h1>ENTER<br>FANCIE’S WORLD.</h1>
+    <p class="lede">Music, personal style, beauty, and creative expression, curated through the world of FANCIE.</p>
+    <div class="btns"><a class="btn gold" href="#shop">EXPLORE THE WORLD</a><a class="btn ghost" href="#music">DISCOVER THE MUSIC</a></div>
+  </div>
+</section>
+
+<section id="artist" class="sec">
+  <div class="wrap split">
+    <div><p class="eyebrow dark">MEET THE ARTIST</p><h2>Meet FANCIE.</h2><p id="bio" class="bio"></p></div>
+    <div id="social" class="social"></div>
+  </div>
+  <div class="wrap"><h3 class="rule">Featured Stories</h3><div id="stories" class="grid stories"></div></div>
+</section>
+
+<section id="music" class="sec alt">
+  <div class="wrap">
+    <p class="eyebrow dark">LISTEN</p><h2>Music</h2>
+    <div id="releases" class="grid"></div>
+    <div id="streaming" class="links"></div>
+    <h3 class="rule" id="videosHead">Videos</h3><div id="videos" class="grid"></div>
+  </div>
+</section>
+
+<section id="radio" class="sec dark">
+  <div class="wrap">
+    <p class="eyebrow">FANCIE RADIO</p><h2>Listen In</h2>
+    <div class="player">
+      <div class="seg" role="group" aria-label="Player mode">
+        <button id="modeMusic" aria-pressed="true">FANCIE’S MUSIC</button>
+        <button id="modeLive" aria-pressed="false">LIVE RADIO</button>
+      </div>
+      <div class="now">
+        <img id="nowArt" alt="" hidden>
+        <div><p class="label">NOW PLAYING</p><p id="nowTitle" class="now-title">Nothing selected</p><p id="nowSub" class="muted"></p><p id="status" class="status" role="status" aria-live="polite">Choose a song to begin.</p></div>
+      </div>
+      <div id="musicPane">
+        <label for="songSel">SELECT A SONG</label>
+        <select id="songSel"></select>
+      </div>
+      <div id="livePane" hidden>
+        <label for="q">SEARCH STATIONS</label>
+        <input id="q" type="search" placeholder="Station, artist, or style" autocomplete="off">
+        <div id="chips" class="chips" role="group" aria-label="Genre filters"></div>
+        <label for="stationSel">SELECT A LIVE STATION</label>
+        <select id="stationSel"></select>
+      </div>
+      <div class="ctrls">
+        <button id="playBtn" class="btn gold" aria-label="Play">PLAY</button>
+        <button id="stopBtn" class="btn ghost">STOP</button>
+        <button id="surpriseBtn" class="btn ghost" hidden>SURPRISE ME</button>
+        <label class="vol">VOLUME <input id="vol" type="range" min="0" max="1" step="0.05" value="0.8"></label>
+      </div>
+      <audio id="audio" preload="none"></audio>
+    </div>
+  </div>
+</section>
+
+<section id="shop" class="sec">
+  <div class="wrap"><p class="eyebrow dark">THE COLLECTION</p><h2>Shop</h2>
+    <div id="cats" class="grid cats"></div>
+    <h3 class="rule">Featured Products</h3><div id="products" class="grid"></div>
+  </div>
+</section>
+<section id="fashion" class="sec alt"><div class="wrap"><p class="eyebrow dark">STYLE</p><h2>Fashion</h2><div id="fashionGrid" class="grid"></div></div></section>
+<section id="beauty" class="sec"><div class="wrap"><p class="eyebrow dark">BEAUTY EDIT</p><h2>Beauty</h2><div id="beautyGrid" class="grid"></div><p id="affiliate" class="muted small"></p></div></section>
+<section id="books" class="sec alt"><div class="wrap"><p class="eyebrow dark">READING</p><h2>Books</h2><div id="bookGrid" class="grid"></div></div></section>
+<section id="journal" class="sec"><div class="wrap"><p class="eyebrow dark">THE JOURNAL</p><h2>Journal</h2><div id="journalGrid" class="grid"></div></div></section>
+
+<section class="sec dark"><div class="wrap news"><h2>Stay Close</h2><div id="newsletter"></div></div></section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p class="wordmark">FANCIE’S WORLD</p>
+    <p class="muted">Music, style, beauty, and creativity from the world of FANCIE.</p>
+    <nav class="flinks" aria-label="Footer"><a href="#artist">The Artist</a><a href="#music">Music</a><a href="#radio">Radio</a><a href="#shop">Shop</a><a href="#journal">Journal</a></nav>
+    <div id="fsocial" class="flinks"></div>
+    <p><a id="mail" href="mailto:info@fanciemusic.com">info@fanciemusic.com</a></p>
+    <p class="muted small">© <span id="yr"></span> Fancie’s World. All rights reserved.</p>
+  </div>
+</footer>
+<script src="js/site-config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
